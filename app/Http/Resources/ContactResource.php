@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class ContactResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,10 @@ class ProductResource extends JsonResource
     {
         return [
             'name'=>$this->name,
-            'description'=>$this->description,
-            'price'=>$this->price.'$',
-            // 'stock_quantity'=>$this->stock_quantity,
-            'image'=>$this->image,
-            'category'=>new CategoryResource($this->whenLoaded('category'))
+            'email'=>$this->email,
+            'phone'=>$this->phone,
+            'message'=>$this->message,
+            'created_at'=>$this->created_at->format('Y-m-d')
         ];
     }
 }

@@ -49,4 +49,6 @@ class CartController extends Controller
         Cart::where('user_id', Auth::id())->findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Item removed from cart!');
     }
+
+    
 }
