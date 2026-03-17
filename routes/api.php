@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::prefix('admin')->controller(AdminController::class)->group(function(){
 Route::post('register','register');
 Route::post('login','login');
 Route::post('logout','logout');
+Route::get('stats','stats')->middleware('auth:admin');
 });
 
 Route::prefix('product')->controller(ProductController::class)->middleware('auth:user,admin')->group(function(){
@@ -45,4 +47,12 @@ Route::prefix('product')->controller(ProductController::class)->middleware('auth
     Route::post('create','create');
     Route::patch('update/{product}','update');
     Route::delete('delete/{product}','delete');
+});
+
+Route::prefix('review')->controller(ReviewController::class)->middleware('auth:user')->group(function(){
+    Route::post('create','create');
+});
+
+Route::prefix('review')->controller(ReviewController::class)->middleware('auth:admin')->group(function(){
+    Route::get('allreviews','all');
 });

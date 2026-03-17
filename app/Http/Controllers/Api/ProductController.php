@@ -9,11 +9,17 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Repository\ProductRepository;
 use Illuminate\Http\Request;
 use Storage;
 
 class ProductController extends Controller
 {
+    private $repo;
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->repo=$productRepository;
+    }
     use ApiResponse;
         public function getallproducts(){
         $products=Product::with('category')->get();
@@ -26,7 +32,7 @@ class ProductController extends Controller
         return $this->success('This is All Products',200,ProductResource::collection($products));
     }
     public function getcategory($slug){
-        $category=Category::where('slug',$slug)->with('products')->first();
+        $category=$this->repo->getcategory($slug);
         if(!$category){
             return $this->error('This Category Not Found',200);
         }
@@ -48,7 +54,7 @@ class ProductController extends Controller
             $path = $image->storeAs('products', $filename, 'public');
             $validated['image']=$path;
         }
-        Product::create($validated);
+       $this->repo->create($validated);
         return $this->success('Product Added Successfully',201);
     }
     public function update(Request $request,Product $product){

@@ -6,6 +6,10 @@ use App\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterAdminRequest;
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -33,5 +37,18 @@ class AdminController extends Controller
         $admin=auth('admin')->user();
         $admin->currentAccessToken()->delete();
         return $this->success('Logout Successfully');
+    }
+    public function stats(){
+        $total_products=Product::count();
+        $total_categories=Category::count();
+        $total_reviews=Review::count();
+        $total_users=User::count();
+        $stats=[
+            'Total_Products'=>$total_products,
+            'Total_Categories'=>$total_categories,
+            'Total_Reviews'=>$total_reviews,
+            'Total_Users'=>$total_users
+        ];
+        return $this->success('This is dashboard stats',200,$stats);
     }
 }
