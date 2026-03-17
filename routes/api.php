@@ -33,6 +33,7 @@ Route::prefix('product')->controller(ProductController::class)->middleware('auth
 Route::get('getallproducts','getallproducts');
 Route::get('getcategory/{slug}','getcategory');
 Route::get('showproduct/{id}','showproduct');
+Route::get('search','search');
 });
 
 Route::prefix('cart')->controller(CartController::class)->middleware('auth:user')->group(function(){
@@ -45,6 +46,11 @@ Route::prefix('category')->controller(CategoryController::class)->middleware('au
     Route::post('addcategory','create');
     Route::put('update/{slug}','edit');
     Route::delete('delete/{slug}','delete');
+});
+
+Route::prefix('category')->controller(CategoryController::class)->middleware('auth:user')->group(function(){
+    Route::get('get/{id}','get');
+
 });
 
 Route::prefix('product')->controller(ProductController::class)->middleware('auth:admin')->group(function(){

@@ -39,4 +39,12 @@ class CategoryController extends Controller
         $category->delete();
         return $this->success('Deleted Successfully');
  }
+
+ public function get($id){
+    $category=Category::with('products')->find($id);
+    if(!$category){
+        return $this->error('There is no category',404);
+    }
+    return $this->success('This is category with product',200,$category);
+ }
 }

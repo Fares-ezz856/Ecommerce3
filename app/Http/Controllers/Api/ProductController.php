@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
     use ApiResponse;
         public function getallproducts(){
-        $products=Product::with('category')->get();
+        $products=Product::with('category')->paginate(10);
         foreach($products as $product){
             $product['image']=asset('storage/'.$product->image);
         }
@@ -84,5 +84,13 @@ public function delete(Product $product){
     }
     $product->delete();
     return $this->success('Product Deleted Successfully',200);
+}
+public function search(Request $request){
+    $query=$request->input('search');
+    $products=Product::with('category')->where('name','LIKE',"%{$query}%")->paginate(10);
+    if($products->isEmpty()){
+        return $this->error('There is no products',404);
+    }
+    return $this->success('This is All Products',200,ProductResource::collection($products));
 }
 }
