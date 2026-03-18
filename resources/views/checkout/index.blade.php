@@ -10,15 +10,15 @@
                 @csrf
                 <div style="margin-bottom: 1.5rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Full Name</label>
-                    <input type="text" value="{{ auth()->user()->name }}" disabled 
+                    <input type="text" value="{{ auth()->user()->name }}" 
                            style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
                 </div>
                 <div style="margin-bottom: 1.5rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Street Address</label>
-                    <textarea name="address" required placeholder="Enter your full delivery address" 
+                    <textarea name="address" required placeholder="Enter your full delivery address"
                               style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; min-height: 100px; font-family: inherit;"></textarea>
                 </div>
-                
+
                 <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; font-weight: 700;">Payment Method</h3>
                 <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 1rem;">
                     <input type="radio" checked disabled>

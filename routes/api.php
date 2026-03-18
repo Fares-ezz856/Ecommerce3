@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +17,15 @@ Route::get('/user', function (Request $request) {
 Route::prefix('user')->controller(UserController::class)->group(function(){
 Route::post('register','register');
 Route::post('login','login');
-Route::post('logout','logout');
+Route::post('logout','logout')->middleware('auth:user');
 });
+
+
 
 Route::prefix('admin')->controller(AdminController::class)->group(function(){
 Route::post('register','register');
 Route::post('login','login');
-Route::post('logout','logout');
+Route::post('logout','logout')->middleware('auth:admin');
 Route::get('stats','stats')->middleware('auth:admin');
 });
 
@@ -30,10 +33,12 @@ Route::prefix('product')->controller(ProductController::class)->middleware('auth
 Route::get('getallproducts','getallproducts');
 Route::get('getcategory/{slug}','getcategory');
 Route::get('showproduct/{id}','showproduct');
+Route::get('search','search');
 });
 
 Route::prefix('cart')->controller(CartController::class)->middleware('auth:user')->group(function(){
 Route::get('cart','index');
+Route::get('mycart','mycart');
 Route::post('add/{id}','add');
 });
 
@@ -41,6 +46,11 @@ Route::prefix('category')->controller(CategoryController::class)->middleware('au
     Route::post('addcategory','create');
     Route::put('update/{slug}','edit');
     Route::delete('delete/{slug}','delete');
+});
+
+Route::prefix('category')->controller(CategoryController::class)->middleware('auth:user')->group(function(){
+    Route::get('get/{id}','get');
+
 });
 
 Route::prefix('product')->controller(ProductController::class)->middleware('auth:admin')->group(function(){
@@ -55,4 +65,12 @@ Route::prefix('review')->controller(ReviewController::class)->middleware('auth:u
 
 Route::prefix('review')->controller(ReviewController::class)->middleware('auth:admin')->group(function(){
     Route::get('allreviews','all');
+});
+
+Route::prefix('contactuser')->controller(ContactController::class)->middleware('auth:user')->group(function(){
+    Route::post('create','create');
+});
+
+Route::prefix('contactadmin')->controller(ContactController::class)->middleware('auth:admin')->group(function(){
+    Route::get('all','all');
 });

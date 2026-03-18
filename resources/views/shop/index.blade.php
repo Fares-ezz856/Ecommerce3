@@ -39,7 +39,7 @@
         @endforelse
     </div>
 
-    <div style="margin-top: 3rem;">
+    {{-- <div style="margin-top: 3rem;"> --}}
         {{ $products->links() }}
-    </div>
+    {{-- </div> --}}
 @endsection

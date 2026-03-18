@@ -41,4 +41,13 @@ class CartController extends Controller
         return $this->success('Added To Cart Successfully');
 
     }
+
+    public function mycart(){
+        $userid=auth('user')->id();
+        $cart=Cart::where('user_id',$userid)->with('product')->get();
+        if($cart->isEmpty()){
+            $this->error('Cart Is Empty',200);
+        }
+        return $this->success('This is your cart',200,CartResource::collection($cart));
+    }
 }
