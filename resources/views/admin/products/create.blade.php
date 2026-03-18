@@ -6,7 +6,7 @@
 <div class="card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); max-width: 800px; margin: 0 auto;">
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
             <div class="form-group">
                 <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Product Name *</label>
@@ -63,7 +63,7 @@
 
         <div style="display: flex; gap: 1rem; justify-content: flex-end;">
             <a href="{{ route('admin.products.index') }}" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #64748b;">Cancel</a>
-            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Create Product</button>
+            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: black; border: 1px solid #e2e8f0 ; border-radius: 8px; cursor: pointer; font-weight: 600;">Create Product</button>
         </div>
     </form>
 </div>
