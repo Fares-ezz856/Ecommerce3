@@ -26,7 +26,7 @@ class AdminOrderController extends Controller
 
     public function convertToInvoice(Order $order)
     {
-        if ($order->status == 'completed') {
+        if ($order->status == 'processing') {
             return back()->with('error', 'This order has already been processed.');
         }
 
@@ -64,12 +64,12 @@ class AdminOrderController extends Controller
                     'invoice_id' => $invoice->id,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'unit_price' => $item->price,
-                    'subtotal' => $item->price * $item->quantity
+                    'unit_price' => $item->unit_price,
+                    'subtotal' => $item->unit_price * $item->quantity
                 ]);
             }
 
-            $order->update(['status' => 'completed']);
+            $order->update(['status' => 'processing']);
 
             return redirect()->route('admin.invoices.show', $invoice->id)->with('success', 'Order converted to ERP Invoice successfully!');
         });

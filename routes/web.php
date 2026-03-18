@@ -97,4 +97,5 @@ Route::prefix('admin')->group(function () {
             Route::get('/contacts', [AdminContactController::class , 'index'])->name('admin.contacts.index');
         }
         );
-        Auth::routes();    });
+          });
+            Auth::routes();

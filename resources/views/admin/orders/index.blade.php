@@ -59,6 +59,9 @@
         </thead>
         <tbody>
             <tr>
+                @forelse ( $orders as $order )
+
+
                 <td style="font-weight: 700;">#{{ $order->id }}</td>
                 <td>
                     {{ $order->user->name ?? 'Guest User' }}<br>
