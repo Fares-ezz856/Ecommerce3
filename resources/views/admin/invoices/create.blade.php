@@ -6,7 +6,7 @@
 <div class="card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow);">
     <form action="{{ route('admin.invoices.store') }}" method="POST">
         @csrf
-        
+
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
             <div class="form-group">
                 <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Customer *</label>
@@ -36,7 +36,7 @@
         </div>
 
         <h3 style="margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem;">Invoice Items</h3>
-        
+
         <div id="items-container">
             <div class="item-row" style="display: grid; grid-template-columns: 3fr 1fr 1fr 0.5fr; gap: 1rem; margin-bottom: 1rem; align-items: flex-end;">
                 <div class="form-group">
@@ -79,7 +79,7 @@
 
         <div style="display: flex; gap: 1rem; justify-content: flex-end;">
             <a href="{{ route('admin.invoices.index') }}" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #64748b;">Cancel</a>
-            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Create Draft Invoice</button>
+            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: black; border: 1px solid #64748b; border-radius: 8px; cursor: pointer; font-weight: 600;">Create Draft Invoice</button>
         </div>
     </form>
 </div>
@@ -127,8 +127,10 @@
         const remove = row.querySelector('.remove-item');
 
         const calculate = () => {
-            const price = select.options[select.selectedIndex]?.dataset.price || 0;
-            subtotal.value = (price * qty.value).toFixed(2);
+            const selectedOption = select.options[select.selectedIndex];
+            const priceNum = parseFloat(selectedOption?.dataset.price) || 0;
+            const qtyNum = parseInt(qty.value) || 0;
+            subtotal.value = (priceNum * qtyNum).toFixed(2);
             updateGrandTotal();
         };
 

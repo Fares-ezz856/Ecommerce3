@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 @extends('layouts.admin')
 
 @section('page-title', 'Manage Orders')
@@ -45,6 +47,9 @@
 @endsection
 
 @section('content')
+@if (session()->has('success'))
+<h3 class="alert alert-success">{{ session()->get('success') }}</h3>
+@endif
 <div class="table-card">
     <table>
         <thead>
@@ -82,7 +87,14 @@
                         <button type="submit" title="Convert to ERP Invoice" style="background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
                             <i class="fas fa-file-invoice"></i> Convert
                         </button>
-                    </form>
+                        </form>
+                        @if ($order->status!='delivered')
+
+                        <form action="{{  route('admin.order.change',$order->id) }}" method="post" onsubmit="return confirm('Are You Sure To Confirm Delivered Order')">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Delevired</button>
+                        </form>
+ @endif
                     @endif
                 </td>
             </tr>

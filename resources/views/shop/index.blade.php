@@ -6,10 +6,22 @@
         <p style="color: #64748b; font-size: 1.25rem;">Upgrade your workspace with our premium ERP solutions.</p>
     </header>
 
+    <div style="max-width: 600px; margin: 0 auto 3rem;">
+        <form action="{{ route('shop.index') }}" method="GET" class="search-form">
+            @if(request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
+            @endif
+            <div class="search-input-group">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search for products..." class="search-input">
+                <button type="submit" class="btn btn-primary search-btn">Search</button>
+            </div>
+        </form>
+    </div>
+
     <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="{{ route('shop.index') }}" class="btn {{ !request('category') ? 'btn-primary' : '' }}" style="text-decoration: none; padding: 0.5rem 1rem; font-size: 0.9rem;">All</a>
         @foreach($categories as $category)
-            <a href="{{ route('shop.category', $category->slug) }}"
+            <a href="{{ route('shop.index',['category' =>$category->slug]) }}"
                class="btn {{ request('category') == $category->slug ? 'btn-primary' : '' }}"
                style="text-decoration: none; border: 1px solid #e2e8f0; color: #1e293b; padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 20px;">
                {{ $category->name }}
@@ -21,7 +33,7 @@
         @forelse($products as $product)
             <div class="product-card">
                 @if($product->image)
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="product-image">
+                    <img src="{{ asset('/storage/'.$product->image) }}" alt="{{ $product->name }}" class="product-image">
                 @else
                     <div class="product-image" style="background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: #94a3b8;">No Image</div>
                 @endif

@@ -27,7 +27,7 @@
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 1rem;">
                                         @if($item->product->image)
-                                            <img src="{{ $item->product->image }}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                                            <img src="{{ asset('/storage/'.$item->product->image)}}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
                                         @endif
                                         <span style="font-weight: 600;">{{ $item->product->name }}</span>
                                     </div>
@@ -35,7 +35,7 @@
                                 <td>
                                     <form action="{{ route('cart.update', $item->id) }}" method="POST" style="display: flex; gap: 0.5rem; align-items: center;">
                                         @csrf
-                                        <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" 
+                                        <input type="number" name="quantity" value="{{ $item->quantity }}" min="1"
                                                style="width: 60px; padding: 0.4rem; border: 1px solid #e2e8f0; border-radius: 6px;">
                                         <button type="submit" class="btn" style="padding: 0.4rem; background: #f1f5f9; font-size: 0.8rem;">Update</button>
                                     </form>
@@ -54,7 +54,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--card-shadow); height: fit-content;">
                 <h3 style="margin-bottom: 1.5rem; font-weight: 700;">Order Summary</h3>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">

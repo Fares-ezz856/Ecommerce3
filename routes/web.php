@@ -81,6 +81,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/orders', [AdminOrderController::class , 'index'])->name('admin.orders.index');
             Route::get('/orders/{order}', [AdminOrderController::class , 'show'])->name('admin.orders.show');
             Route::post('/orders/{order}/convert', [AdminOrderController::class , 'convertToInvoice'])->name('admin.orders.convert');
+            Route::post('/orders/{order}/change', [AdminOrderController::class , 'changestatus'])->name('admin.order.change');
 
             // Reports & Audit
             Route::get('/audit', [AdminAuditController::class , 'index'])->name('admin.audit.index');

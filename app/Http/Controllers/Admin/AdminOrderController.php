@@ -74,4 +74,11 @@ class AdminOrderController extends Controller
             return redirect()->route('admin.invoices.show', $invoice->id)->with('success', 'Order converted to ERP Invoice successfully!');
         });
     }
+
+    public function changestatus(Order $order){
+        $order->update([
+            'status'=>'delivered'
+        ]);
+        return redirect()->back()->with('success','status changed successfully');
+    }
 }

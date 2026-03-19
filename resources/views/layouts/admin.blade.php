@@ -131,6 +131,58 @@
                 margin-right: 0;
             }
         }
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pagination li {
+            display: inline-block;
+        }
+
+        .pagination li a, .pagination li span {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+
+        .pagination li.active span {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination li.disabled span {
+            color: #94a3b8;
+            background: #f8fafc;
+            cursor: not-allowed;
+        }
+
+        .pagination li a:hover:not(.active) {
+            background-color: #f1f5f9;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .pagination svg {
+            width: 20px;
+            height: 20px;
+        }
     </style>
     @yield('styles')
 </head>
@@ -179,5 +231,6 @@
 
         @yield('content')
     </div>
+    @yield('scripts')
 </body>
 </html>

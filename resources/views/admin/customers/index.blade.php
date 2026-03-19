@@ -30,7 +30,7 @@
                     <small style="color: var(--text-muted);">{{ $customer->address }}</small>
                 </td>
                 <td style="padding: 1rem 1.5rem;">
-                    {{ $customer->phone }}<br>
+                    {{ $customer->phone??'No Phone' }}<br>
                     <small style="color: #0369a1;">{{ $customer->email }}</small>
                 </td>
                 <td style="padding: 1rem 1.5rem;">

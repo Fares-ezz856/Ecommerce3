@@ -97,7 +97,7 @@
                 <td style="font-family: monospace; font-weight: 600;">{{ $product->code ?? '---' }}</td>
                 <td>
                     @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" class="product-img" alt="">
+                        <img src="{{ asset('/storage/'. $product->image) }}" class="product-img" alt="">
                     @else
                         <div style="width: 50px; height: 50px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #94a3b8;">
                             <i class="fas fa-image"></i>
@@ -134,7 +134,7 @@
     </table>
 </div>
 
-<div style="margin-top: 2rem;">
+<div style="margin-top: 2rem; display: flex; justify-content: center;">
     {{ $products->links() }}
 </div>
 @endsection

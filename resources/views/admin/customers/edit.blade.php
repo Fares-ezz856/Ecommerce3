@@ -7,7 +7,7 @@
     <form action="{{ route('admin.customers.update', $customer->id) }}" method="POST">
         @csrf
         @method('PUT')
-        
+
         <div class="form-group" style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Customer Name *</label>
             <input type="text" name="name" value="{{ $customer->name }}" class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
@@ -45,7 +45,7 @@
 
         <div style="display: flex; gap: 1rem; justify-content: flex-end;">
             <a href="{{ route('admin.customers.index') }}" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #64748b;">Cancel</a>
-            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Update Profile</button>
+            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: black; border: 1px solid #64748b; border-radius: 8px; cursor: pointer; font-weight: 600;">Update Profile</button>
         </div>
     </form>
 </div>
