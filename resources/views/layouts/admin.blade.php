@@ -193,11 +193,11 @@
         </div>
         <ul class="nav-links">
             <li><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
-            
+
             <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">Catalog</li>
             <li><a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}"><i class="fas fa-box"></i> <span>Products</span></a></li>
             <li><a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}"><i class="fas fa-list"></i> <span>Categories</span></a></li>
-            
+
             <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">Warehouse & Stock</li>
             <li><a href="{{ route('admin.warehouses.index') }}" class="{{ request()->routeIs('admin.warehouses.*') ? 'active' : '' }}"><i class="fas fa-warehouse"></i> <span>Warehouses</span></a></li>
             <li><a href="{{ route('admin.movements.index') }}" class="{{ request()->routeIs('admin.movements.*') ? 'active' : '' }}"><i class="fas fa-exchange-alt"></i> <span>Movements</span></a></li>
@@ -213,6 +213,7 @@
 
             <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">System & Reports</li>
             <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+            <li><a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> <span>Profile</span></a></li>
             <li><a href="{{ route('admin.audit.index') }}" class="{{ request()->routeIs('admin.audit.*') ? 'active' : '' }}"><i class="fas fa-history"></i> <span>Audit Log</span></a></li>
         </ul>
     </div>

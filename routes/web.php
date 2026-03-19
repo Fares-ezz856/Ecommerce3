@@ -53,6 +53,8 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin-web')->group(function () {
             Route::get('/dashboard', [AdminHomeController::class , 'index'])->name('admin.dashboard');
+            Route::get('/profile',[AdminHomeController::class,'profile'])->name('admin.profile');
+            Route::post('/update/profile',[AdminHomeController::class,'edit'])->name('admin.update.profile');
 
             // Product Management
             Route::resource('products', AdminProductController::class)->names('admin.products');

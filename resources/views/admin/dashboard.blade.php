@@ -134,6 +134,12 @@
         <i class="fas fa-plus-circle" style="color: #4a90e2; font-size: 1.2rem;"></i>
         <span style="font-weight: 600;">Add New Product</span>
     </a>
+
+      <a href="{{ route('admin.categories.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
+        <i class="fas fa-plus-circle" style="color: #4a90e2; font-size: 1.2rem;"></i>
+        <span style="font-weight: 600;">Add New Category</span>
+    </a>
+
     <a href="{{ route('admin.invoices.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-file-invoice-dollar" style="color: #2ecc71; font-size: 1.2rem;"></i>
         <span style="font-weight: 600;">Create Sale Invoice</span>
