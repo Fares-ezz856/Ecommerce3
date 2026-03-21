@@ -33,6 +33,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'address' => 'required|string|max:255',
+            'payment_method' => 'required|in:cash,stripe',
         ]);
 
         $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
@@ -41,7 +42,9 @@ class OrderController extends Controller
             return redirect()->route('shop.index');
         }
 
-        DB::transaction(function () use ($request, $cartItems) {
+        $orderId = null;
+
+        DB::transaction(function () use ($request, $cartItems, &$orderId) {
             $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);
 
             $order = Order::create([
@@ -50,7 +53,10 @@ class OrderController extends Controller
                 'status' => 'pending',
                 'address' => $request->address,
                 'payment_status' => 'Unpaid',
+                'payment_method' => $request->payment_method,
             ]);
+
+            $orderId = $order->id;
 
             foreach ($cartItems as $item) {
                 OrderItem::create([
@@ -60,12 +66,15 @@ class OrderController extends Controller
                     'unit_price' => $item->product->price,
                 ]);
 
-               
                 $item->product->decrement('stock_quantity', $item->quantity);
             }
 
             Cart::where('user_id', Auth::id())->delete();
         });
+
+        if ($request->payment_method === 'stripe') {
+            return redirect()->route('stripe.order.checkout', $orderId);
+        }
 
         return redirect()->route('orders.index')->with('success', 'Order placed successfully!');
     }

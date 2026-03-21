@@ -81,14 +81,14 @@
     <table>
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price (Pcs/Pkg)</th>
-                <th>Stock</th>
-                <th>Visible</th>
-                <th>Actions</th>
+                <th>{{ __('Code') }}</th>
+                <th>{{ __('Image') }}</th>
+                <th>{{ __('Name') }}</th>
+                <th>{{ __('Category') }}</th>
+                <th>{{ __('Price (Pcs/Pkg)') }}</th>
+                <th>{{ __('Stock') }}</th>
+                <th>{{ __('Visible') }}</th>
+                <th>{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>

@@ -35,6 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [OrderController::class , 'checkout'])->name('checkout.index');
     Route::post('/checkout', [OrderController::class , 'store'])->name('checkout.store');
     Route::get('/orders', [OrderController::class , 'index'])->name('orders.index');
+
+    // Stripe Routes
+    Route::get('/stripe/checkout/{invoice}', [App\Http\Controllers\StripeController::class, 'checkout'])->name('stripe.checkout');
+    Route::get('/stripe/success/{invoice}', [App\Http\Controllers\StripeController::class, 'success'])->name('stripe.success');
+    Route::get('/stripe/cancel/{invoice}', [App\Http\Controllers\StripeController::class, 'cancel'])->name('stripe.cancel');
+
+    // Stripe Order Routes
+    Route::get('/stripe/order/checkout/{order}', [App\Http\Controllers\StripeController::class, 'orderCheckout'])->name('stripe.order.checkout');
+    Route::get('/stripe/order/success/{order}', [App\Http\Controllers\StripeController::class, 'orderSuccess'])->name('stripe.order.success');
 });
 
 // Auth::routes(); // Requires laravel/ui package. Run: composer require laravel/ui && php artisan ui bootstrap --auth
@@ -68,6 +77,8 @@ Route::prefix('admin')->group(function () {
 
             // Customer Management (CRM)
             Route::resource('customers', AdminCustomerController::class)->names('admin.customers');
+            Route::get('admin', [AdminHomeController::class,'create'])->name('admin.admins.create');
+             Route::post('admin/store', [AdminHomeController::class,'store'])->name('admin.admins.store');
 
             // Invoicing System
             Route::get('/invoices', [AdminInvoiceController::class , 'index'])->name('admin.invoices.index');
@@ -98,7 +109,15 @@ Route::prefix('admin')->group(function () {
 
             // Contact Messages
             Route::get('/contacts', [AdminContactController::class , 'index'])->name('admin.contacts.index');
-        }
-        );
-          });
-            Auth::routes();
+        });
+    });
+
+// Language Switcher
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
+Auth::routes();

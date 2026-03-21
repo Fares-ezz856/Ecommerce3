@@ -1,30 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern E-Shop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>{{ __('Modern E-Shop') }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/ecommerce.css') }}">
     <style>
-        /* Fallback if file doesn't load immediately */
         body { font-family: 'Inter', sans-serif; }
+        [dir="rtl"] { font-family: 'Cairo', 'Inter', sans-serif; }
+        
+        .lang-switch-shop {
+            display: flex;
+            gap: 1rem;
+            margin-right: 1rem;
+        }
+        
+        [dir="rtl"] .lang-switch-shop {
+            margin-right: 0;
+            margin-left: 1rem;
+        }
+
+        .lang-link {
+            text-decoration: none;
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .lang-link.active {
+            color: #6366f1;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <a href="{{ route('shop.index') }}" class="logo">ECO-ERP</a>
         <div class="nav-links">
-            <a href="{{ route('shop.index') }}">Products</a>
-            <a href="{{ route('cart.index') }}">Cart</a>
+            <div class="lang-switch-shop">
+                <a href="{{ route('lang.switch', 'en') }}" class="lang-link {{ app()->getLocale() == 'en' ? 'active' : '' }}">EN</a>
+                <a href="{{ route('lang.switch', 'ar') }}" class="lang-link {{ app()->getLocale() == 'ar' ? 'active' : '' }}">AR</a>
+            </div>
+            <a href="{{ route('shop.index') }}">{{ __('Products') }}</a>
+            <a href="{{ route('cart.index') }}">{{ __('Cart') }}</a>
             @auth
-                <a href="{{ route('orders.index') }}">My Orders</a>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <a href="{{ route('orders.index') }}">{{ __('My Orders') }}</a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             @else
-                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('login') }}">{{ __('Login') }}</a>
             @endauth
         </div>
     </nav>

@@ -11,7 +11,7 @@
         </div>
         <div>
             <nav style="margin-bottom: 1rem; color: #64748b; font-size: 0.9rem;">
-                <a href="{{ route('shop.index') }}" style="text-decoration: none; color: inherit;">Shop</a> /
+                <a href="{{ route('shop.index') }}" style="text-decoration: none; color: inherit;">{{ __('Shop') }}</a> /
                 <span style="color: var(--primary);">{{ $product->category->name }}</span>
             </nav>
             <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">{{ $product->name }}</h1>
@@ -21,9 +21,9 @@
                 <p style="color: #475569; line-height: 1.7;">{{ $product->description }}</p>
             </div>
 
-            <p style="margin-bottom: 0.5rem; font-weight: 600;">Availability:
+            <p style="margin-bottom: 0.5rem; font-weight: 600;">{{ __('Availability') }}:
                 <span style="color: {{ $product->stock_quantity > 0 ? '#166534' : '#991b1b' }};">
-                    {{ $product->stock_quantity > 0 ? 'In Stock (' . $product->stock_quantity . ')' : 'Out of Stock' }}
+                    {{ $product->stock_quantity > 0 ? __('In Stock') . ' (' . $product->stock_quantity . ')' : __('Out of Stock') }}
                 </span>
             </p>
 
@@ -33,7 +33,7 @@
                     <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock_quantity }}"
                            style="width: 80px; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px; font-weight: 600;">
                     <button type="submit" class="btn btn-primary" style="flex: 1; padding: 1rem;" {{ $product->stock_quantity <= 0 ? 'disabled' : '' }}>
-                        Add to Cart
+                        {{ __('Add to Cart') }}
                     </button>
                 </div>
             </form>
@@ -41,7 +41,7 @@
     </div>
 
     <div style="margin-top: 5rem;">
-        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem;">Customer Reviews</h2>
+        <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem;">{{ __('Customer Reviews') }}</h2>
         @forelse($product->reviews as $review)
             <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid #e2e8f0;">
                 <p style="font-weight: 600; margin-bottom: 0.5rem;">{{ $review->user->name }}</p>
@@ -49,7 +49,7 @@
                 <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 1rem;">{{ $review->created_at->diffForHumans() }}</p>
             </div>
         @empty
-            <p style="color: #64748b;">No reviews yet. Be the first to share your thoughts!</p>
+            <p style="color: #64748b;">{{ __('No reviews yet. Be the first to share your thoughts!') }}</p>
         @endforelse
     </div>
 @endsection

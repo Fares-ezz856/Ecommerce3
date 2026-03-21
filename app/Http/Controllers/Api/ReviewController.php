@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Resources\ReviewResource;
 use App\Models\Review;
+use Illuminate\Support\Facades\Cache;
 
 class ReviewController extends Controller
 {
@@ -19,7 +20,15 @@ class ReviewController extends Controller
     }
 
     public function all(){
-        $reviews=Review::with('user','product')->get();
+        if(!Cache::has('reviews')){
+            $reviews=Review::with('user','product')->get();
+            Cache::remember('reviews',now()->addDay(),function() use ($reviews){
+                return $reviews;
+            });
+        }
+        $reviews=Cache::get('reviews');
+        // Cache::forget('reviews');
+
         if($reviews->isEmpty()){
             return $this->error('No Found Any Reviews',200);
         }

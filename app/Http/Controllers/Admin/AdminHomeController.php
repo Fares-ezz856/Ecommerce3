@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -50,5 +51,25 @@ class AdminHomeController extends Controller
         ]);
 
         return redirect()->back()->with('success','Your Profile Updated Successfully');
+    }
+
+    public function create(){
+        return view('admin.users.create');
+    }
+    public function store(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|unique:admins,id',
+        ]);
+        $admin=Admin::where('email',$request->email)->first();
+        if($admin){
+            return redirect()->back()->with('error','this email already exists');
+        }
+        admin::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>'123123123'
+        ]);
+        return redirect()->back()->with('success','Admin Added Successfully');
     }
 }

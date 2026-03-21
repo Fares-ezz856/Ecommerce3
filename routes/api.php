@@ -30,7 +30,7 @@ Route::get('stats','stats')->middleware('auth:admin');
 });
 
 Route::prefix('product')->controller(ProductController::class)->middleware('auth:user,admin')->group(function(){
-Route::get('getallproducts','getallproducts');
+Route::get('getallproducts/{number}','getallproducts');
 Route::get('getcategory/{slug}','getcategory');
 Route::get('showproduct/{id}','showproduct');
 Route::get('search','search');

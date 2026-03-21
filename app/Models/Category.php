@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'slug'];
+   use HasTranslations;
+    protected $fillable = ['name', 'slug', 'description'];
+   public $translatable = ['name','slug', 'description'];
 
     public function products()
     {

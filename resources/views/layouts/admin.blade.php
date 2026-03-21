@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - ERP</title>
+    <title>{{ __('Admin Dashboard') }} - ERP</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -19,6 +19,10 @@
             --text-main: #333333;
             --text-muted: #7f8c8d;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        [dir="rtl"] {
+            font-family: 'Cairo', 'Inter', sans-serif;
         }
 
         body {
@@ -40,6 +44,11 @@
             transition: all 0.3s ease;
         }
 
+        [dir="rtl"] .nav-links a i {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+/* ... existing styles ... */
         .sidebar-header {
             padding: 2rem;
             text-align: center;
@@ -102,6 +111,31 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            margin-right: 1.5rem;
+        }
+
+        [dir="rtl"] .lang-switch {
+            margin-right: 0;
+            margin-left: 1.5rem;
+        }
+
+        .lang-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .lang-link.active {
+            background: var(--primary-color);
+            color: white;
         }
 
         .logout-btn {
@@ -189,43 +223,47 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>ERP ADMIN</h2>
+            <h2>{{ __('ERP ADMIN') }}</h2>
         </div>
         <ul class="nav-links">
-            <li><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="fas fa-th-large"></i> <span>{{ __('Dashboard') }}</span></a></li>
 
-            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">Catalog</li>
-            <li><a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}"><i class="fas fa-box"></i> <span>Products</span></a></li>
-            <li><a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}"><i class="fas fa-list"></i> <span>Categories</span></a></li>
+            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">{{ __('Catalog') }}</li>
+            <li><a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}"><i class="fas fa-box"></i> <span>{{ __('Products') }}</span></a></li>
+            <li><a href="{{ route('admin.categories.index') }}" class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}"><i class="fas fa-list"></i> <span>{{ __('Categories') }}</span></a></li>
 
-            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">Warehouse & Stock</li>
-            <li><a href="{{ route('admin.warehouses.index') }}" class="{{ request()->routeIs('admin.warehouses.*') ? 'active' : '' }}"><i class="fas fa-warehouse"></i> <span>Warehouses</span></a></li>
-            <li><a href="{{ route('admin.movements.index') }}" class="{{ request()->routeIs('admin.movements.*') ? 'active' : '' }}"><i class="fas fa-exchange-alt"></i> <span>Movements</span></a></li>
+            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">{{ __('Warehouse & Stock') }}</li>
+            <li><a href="{{ route('admin.warehouses.index') }}" class="{{ request()->routeIs('admin.warehouses.*') ? 'active' : '' }}"><i class="fas fa-warehouse"></i> <span>{{ __('Warehouses') }}</span></a></li>
+            <li><a href="{{ route('admin.movements.index') }}" class="{{ request()->routeIs('admin.movements.*') ? 'active' : '' }}"><i class="fas fa-exchange-alt"></i> <span>{{ __('Movements') }}</span></a></li>
 
-            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">Sales & CRM</li>
-            <li><a href="{{ route('admin.customers.index') }}" class="{{ request()->routeIs('admin.customers.*') ? 'active' : '' }}"><i class="fas fa-user-friends"></i> <span>Customers</span></a></li>
-            <li><a href="{{ route('admin.invoices.index') }}" class="{{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i> <span>Invoices</span></a></li>
-            <li><a href="{{ route('admin.payments.index') }}" class="{{ request()->routeIs('admin.payments.*') ? 'active' : '' }}"><i class="fas fa-money-bill-wave"></i> <span>Payments</span></a></li>
-            <li><a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"><i class="fas fa-shopping-cart"></i> <span>Orders</span></a></li>
-            <li><a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="fas fa-users"></i> <span>Users</span></a></li>
-            <li><a href="{{ route('admin.reviews.index') }}" class="{{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}"><i class="fas fa-star"></i> <span>Reviews</span></a></li>
-            <li><a href="{{ route('admin.contacts.index') }}" class="{{ request()->routeIs('admin.contacts.*') ? 'active' : '' }}"><i class="fas fa-envelope"></i> <span>Support</span></a></li>
+            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">{{ __('Sales & CRM') }}</li>
+            <li><a href="{{ route('admin.customers.index') }}" class="{{ request()->routeIs('admin.customers.*') ? 'active' : '' }}"><i class="fas fa-user-friends"></i> <span>{{ __('Customers') }}</span></a></li>
+            <li><a href="{{ route('admin.invoices.index') }}" class="{{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}"><i class="fas fa-file-invoice-dollar"></i> <span>{{ __('Invoices') }}</span></a></li>
+            <li><a href="{{ route('admin.payments.index') }}" class="{{ request()->routeIs('admin.payments.*') ? 'active' : '' }}"><i class="fas fa-money-bill-wave"></i> <span>{{ __('Payments') }}</span></a></li>
+            <li><a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"><i class="fas fa-shopping-cart"></i> <span>{{ __('Orders') }}</span></a></li>
+            <li><a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="fas fa-users"></i> <span>{{ __('Admins') }}</span></a></li>
+            <li><a href="{{ route('admin.reviews.index') }}" class="{{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}"><i class="fas fa-star"></i> <span>{{ __('Reviews') }}</span></a></li>
+            <li><a href="{{ route('admin.contacts.index') }}" class="{{ request()->routeIs('admin.contacts.*') ? 'active' : '' }}"><i class="fas fa-envelope"></i> <span>{{ __('Support') }}</span></a></li>
 
-            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">System & Reports</li>
-            <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
-            <li><a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> <span>Profile</span></a></li>
-            <li><a href="{{ route('admin.audit.index') }}" class="{{ request()->routeIs('admin.audit.*') ? 'active' : '' }}"><i class="fas fa-history"></i> <span>Audit Log</span></a></li>
+            <li class="sidebar-header" style="padding: 10px 20px; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 1rem;">{{ __('System & Reports') }}</li>
+            <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> <span>{{ __('Reports') }}</span></a></li>
+            <li><a href="{{ route('admin.profile') }}" class="{{ request()->routeIs('admin.profile') ? 'active' : '' }}"><i class="fas fa-user-circle"></i> <span>{{ __('Profile') }}</span></a></li>
+            <li><a href="{{ route('admin.audit.index') }}" class="{{ request()->routeIs('admin.audit.*') ? 'active' : '' }}"><i class="fas fa-history"></i> <span>{{ __('Audit Log') }}</span></a></li>
         </ul>
     </div>
 
     <div class="main-content">
         <header>
-            <h1>@yield('page-title', 'Dashboard')</h1>
+            <h1>@yield('page-title', __('Dashboard'))</h1>
             <div class="user-profile">
-                <span>{{ Auth::guard('admin-web')->user()->name ?? 'Admin' }}</span>
+                <div class="lang-switch">
+                    <a href="{{ route('lang.switch', 'en') }}" class="lang-link {{ app()->getLocale() == 'en' ? 'active' : '' }}">EN</a>
+                    <a href="{{ route('lang.switch', 'ar') }}" class="lang-link {{ app()->getLocale() == 'ar' ? 'active' : '' }}">AR</a>
+                </div>
+                <span>{{ Auth::guard('admin-web')->user()->name ?? __('Admin') }}</span>
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="logout-btn">Logout</button>
+                    <button type="submit" class="logout-btn">{{ __('Logout') }}</button>
                 </form>
             </div>
         </header>

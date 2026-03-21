@@ -59,8 +59,8 @@
 @endif
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <h2 style="font-weight: 700;">Categories</h2>
-    <a href="{{ route('admin.categories.create') }}" style="background: var(--primary); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
-        <i class="fas fa-plus"></i> Add Category
+    <a href="{{ route('admin.categories.create') }}" style="background: var(--primary); color: black; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
+        <i class="fas fa-plus"></i> {{ __('Add Category') }}
     </a>
 </div>
 
@@ -68,10 +68,10 @@
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8fafc; text-align: left;">
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Name</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Slug</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Products</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Actions</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Name') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Slug') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Products') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>

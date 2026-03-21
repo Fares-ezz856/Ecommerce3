@@ -1,12 +1,12 @@
 @extends('layouts.shop')
 
 @section('content')
-    <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">Your Shopping Cart</h1>
-
+    <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">{{ __('Your Shopping Cart') }}</h1>
+ 
     @if($cartItems->isEmpty())
         <div style="text-align: center; padding: 5rem; background: white; border-radius: 12px; border: 1px dashed #cbd5e1;">
-            <p style="color: #64748b; font-size: 1.25rem; margin-bottom: 2rem;">Your cart is empty.</p>
-            <a href="{{ route('shop.index') }}" class="btn btn-primary" style="text-decoration: none;">Go Shopping</a>
+            <p style="color: #64748b; font-size: 1.25rem; margin-bottom: 2rem;">{{ __('Your cart is empty.') }}</p>
+            <a href="{{ route('shop.index') }}" class="btn btn-primary" style="text-decoration: none;">{{ __('Go Shopping') }}</a>
         </div>
     @else
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
@@ -14,11 +14,11 @@
                 <table class="cart-table">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th>Action</th>
+                            <th>{{ __('Product') }}</th>
+                            <th>{{ __('Quantity') }}</th>
+                            <th>{{ __('Price') }}</th>
+                            <th>{{ __('Total') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +37,7 @@
                                         @csrf
                                         <input type="number" name="quantity" value="{{ $item->quantity }}" min="1"
                                                style="width: 60px; padding: 0.4rem; border: 1px solid #e2e8f0; border-radius: 6px;">
-                                        <button type="submit" class="btn" style="padding: 0.4rem; background: #f1f5f9; font-size: 0.8rem;">Update</button>
+                                        <button type="submit" class="btn" style="padding: 0.4rem; background: #f1f5f9; font-size: 0.8rem;">{{ __('Update') }}</button>
                                     </form>
                                 </td>
                                 <td>${{ number_format($item->product->price, 2) }}</td>
@@ -46,7 +46,7 @@
                                     <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" style="color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600;">Remove</button>
+                                        <button type="submit" style="color: #ef4444; background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600;">{{ __('Remove') }}</button>
                                     </form>
                                 </td>
                             </tr>
@@ -54,23 +54,23 @@
                     </tbody>
                 </table>
             </div>
-
+ 
             <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--card-shadow); height: fit-content;">
-                <h3 style="margin-bottom: 1.5rem; font-weight: 700;">Order Summary</h3>
+                <h3 style="margin-bottom: 1.5rem; font-weight: 700;">{{ __('Order Summary') }}</h3>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                    <span>Subtotal</span>
+                    <span>{{ __('Subtotal') }}</span>
                     <span style="font-weight: 600;">${{ number_format($cartItems->sum(fn($item) => $item->product->price * $item->quantity), 2) }}</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
-                    <span>Shipping</span>
-                    <span style="color: #166534; font-weight: 600;">Free</span>
+                    <span>{{ __('Shipping') }}</span>
+                    <span style="color: #166534; font-weight: 600;">{{ __('Free') }}</span>
                 </div>
                 <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2rem; font-size: 1.25rem; font-weight: 800;">
-                    <span>Total</span>
+                    <span>{{ __('Total') }}</span>
                     <span style="color: var(--primary);">${{ number_format($cartItems->sum(fn($item) => $item->product->price * $item->quantity), 2) }}</span>
                 </div>
-                <a href="{{ route('checkout.index') }}" class="btn btn-primary" style="display: block; text-decoration: none; padding: 1rem;">Proceed to Checkout</a>
+                <a href="{{ route('checkout.index') }}" class="btn btn-primary" style="display: block; text-decoration: none; padding: 1rem;">{{ __('Proceed to Checkout') }}</a>
             </div>
         </div>
     @endif

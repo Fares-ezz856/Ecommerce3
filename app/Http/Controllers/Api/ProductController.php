@@ -21,8 +21,8 @@ class ProductController extends Controller
         $this->repo=$productRepository;
     }
     use ApiResponse;
-        public function getallproducts(){
-        $products=Product::with('category')->paginate(10);
+        public function getallproducts($number){
+        $products=Product::with('category')->paginate($number);
         foreach($products as $product){
             $product['image']=asset('storage/'.$product->image);
         }

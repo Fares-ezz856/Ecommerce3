@@ -73,8 +73,8 @@
 
 @section('content')
 <div class="welcome-card">
-    <h2>Welcome back, {{auth('admin-web')->user()->name}}</h2>
-    <p>Here's what's happening in your store today.</p>
+    <h2>{{ __('Welcome back') }} {{auth('admin-web')->user()->name}} </h2>
+    <p>{{ __("Here's what's happening in your store today") }}.</p>
 </div>
 
 <div class="stats-grid">
@@ -83,7 +83,7 @@
             <i class="fas fa-box"></i>
         </div>
         <div class="stat-info">
-            <h3>Products</h3>
+            <h3>{{ __('Products') }}</h3>
             <p>{{ $stats['total_products'] }}</p>
         </div>
     </div>
@@ -93,7 +93,7 @@
             <i class="fas fa-list"></i>
         </div>
         <div class="stat-info">
-            <h3>Categories</h3>
+            <h3>{{ __('Categories') }}</h3>
             <p>{{ $stats['total_categories'] }}</p>
         </div>
     </div>
@@ -103,7 +103,7 @@
             <i class="fas fa-shopping-cart"></i>
         </div>
         <div class="stat-info">
-            <h3>Orders</h3>
+            <h3>{{ __('Orders') }}</h3>
             <p>{{ $stats['total_orders'] }}</p>
         </div>
     </div>
@@ -113,7 +113,7 @@
             <i class="fas fa-users"></i>
         </div>
         <div class="stat-info">
-            <h3>Users</h3>
+            <h3>{{ __('Users') }}</h3>
             <p>{{ $stats['total_users'] }}</p>
         </div>
     </div>
@@ -123,34 +123,38 @@
             <i class="fas fa-star"></i>
         </div>
         <div class="stat-info">
-            <h3>Reviews</h3>
+            <h3>{{ __('Reviews') }}</h3>
             <p>{{ $stats['total_reviews'] }}</p>
         </div>
     </div>
 </div>
-<h2 style="margin-bottom: 1.5rem; font-weight: 700; color: #1e293b;">Quick Actions</h2>
+<h2 style="margin-bottom: 1.5rem; font-weight: 700; color: #1e293b;">{{ __('Quick Actions') }}</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;">
     <a href="{{ route('admin.products.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-plus-circle" style="color: #4a90e2; font-size: 1.2rem;"></i>
-        <span style="font-weight: 600;">Add New Product</span>
+        <span style="font-weight: 600;">{{ __('Add New Product') }}</span>
     </a>
 
       <a href="{{ route('admin.categories.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-plus-circle" style="color: #4a90e2; font-size: 1.2rem;"></i>
-        <span style="font-weight: 600;">Add New Category</span>
+        <span style="font-weight: 600;">{{ __('Add New Category')}}</span>
     </a>
 
     <a href="{{ route('admin.invoices.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-file-invoice-dollar" style="color: #2ecc71; font-size: 1.2rem;"></i>
-        <span style="font-weight: 600;">Create Sale Invoice</span>
+        <span style="font-weight: 600;">{{ __('Create Sale Invoice') }}</span>
     </a>
     <a href="{{ route('admin.customers.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-user-plus" style="color: #9b59b6; font-size: 1.2rem;"></i>
-        <span style="font-weight: 600;">Add New Customer</span>
+        <span style="font-weight: 600;">{{ __('Add New Customer') }}</span>
+    </a>
+        <a href="{{ route('admin.admins.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
+        <i class="fas fa-user-plus" style="color: #9b59b6; font-size: 1.2rem;"></i>
+        <span style="font-weight: 600;">{{ __('Add New Admin') }}</span>
     </a>
     <a href="{{ route('admin.warehouses.create') }}" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 1.2rem; border-radius: 12px; text-decoration: none; color: #1e293b; box-shadow: var(--shadow); border: 1px solid #e2e8f0; transition: transform 0.2s;">
         <i class="fas fa-warehouse" style="color: #e67e22; font-size: 1.2rem;"></i>
-        <span style="font-weight: 600;">Define Warehouse</span>
+        <span style="font-weight: 600;">{{ __('Define Warehouse') }}</span>
     </a>
 </div>
 @endsection
