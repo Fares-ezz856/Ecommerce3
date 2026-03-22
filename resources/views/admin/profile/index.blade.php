@@ -21,12 +21,12 @@
 
 
         <div class="form-group" style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Admin Name *</label>
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('Admin Name') }} *</label>
             <input type="text" name="name" value="{{ $admin->name }}" class="form-control"  style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
         </div>
 
         <div class="form-group" style="margin-bottom: 2rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Old Password</label>
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('Old Password') }}</label>
              <input type="text" name="old_password" class="form-control"  style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
         </div>
         @error('old_password')
@@ -34,13 +34,13 @@
         @enderror
 
           <div class="form-group" style="margin-bottom: 2rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">New Password</label>
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">{{ __('New Password') }}</label>
              <input type="text" name="new_password" class="form-control"  style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px;">
         </div>
 
         <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-            <a href="{{ route('admin.categories.index') }}" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #64748b;">Cancel</a>
-            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: black; border: 1px solid #64748b; border-radius: 8px; cursor: pointer; font-weight: 600;">Update Profile</button>
+            <a href="{{ route('admin.categories.index') }}" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none; color: #64748b;">{{ __('Cancel') }}</a>
+            <button type="submit" style="padding: 10px 25px; background: var(--primary); color: black; border: 1px solid #64748b; border-radius: 8px; cursor: pointer; font-weight: 600;">{{ __('Update Profile') }}</button>
         </div>
     </form>
 </div>

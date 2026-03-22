@@ -58,7 +58,7 @@
     </div>
 @endif
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-    <h2 style="font-weight: 700;">Categories</h2>
+    <h2 style="font-weight: 700;">{{ __('Categories') }}</h2>
     <a href="{{ route('admin.categories.create') }}" style="background: var(--primary); color: black; padding: 10px 20px; border-radius: 8px; text-decoration: none;">
         <i class="fas fa-plus"></i> {{ __('Add Category') }}
     </a>

@@ -54,12 +54,12 @@
     <table>
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>User</th>
-                <th>Total Amount</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Actions</th>
+                <th>{{ __('Order ID') }}</th>
+                <th>{{ __('User') }}</th>
+                <th>{{ __('Total Amount') }}</th>
+                <th>{{ __('Status') }}</th>
+                <th>{{ __('Date') }}</th>
+                <th>{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>

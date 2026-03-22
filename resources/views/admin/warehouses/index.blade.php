@@ -14,10 +14,10 @@
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8fafc; text-align: left;">
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Name</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Location</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Activity Count</th>
-                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Actions</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Name') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Location') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Activity Count') }}</th>
+                <th style="padding: 1rem 1.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
                 <td style="padding: 1rem 1.5rem; color: var(--text-muted);">{{ $warehouse->location ?? 'Not Specified' }}</td>
                 <td style="padding: 1rem 1.5rem;">
                     <span class="badge" style="background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;">
-                        {{ $warehouse->stock_movements_count }} Movements
+                        {{ $warehouse->stock_movements_count }} {{ __('Movements') }}
                     </span>
                 </td>
                 <td style="padding: 1rem 1.5rem; display: flex; gap: 0.5rem;">
